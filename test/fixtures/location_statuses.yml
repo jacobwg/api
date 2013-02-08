@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time: 2013-02-08 10:44:56
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  time: 2013-02-08 10:44:56
+  latitude: 1.5
+  longitude: 1.5
