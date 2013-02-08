@@ -6,10 +6,11 @@ class LocationApi < Grape::API
   resource :location do
 
     get do
-      (1..12).to_a
+      @R ||= Rosumi.new(ENV['ICLOUD_EMAIL'], ENV['ICLOUD_PASSWORD'])
+      @R.updateDevices.last['location'].to_json
     end
 
-    get :all do
+    get :history do
       (1..10).to_a
     end
   end
