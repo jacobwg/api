@@ -35,3 +35,25 @@ Api::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+@last_api_change = Time.now
+api_reloader = ActiveSupport::FileUpdateChecker.new(Dir["#{Rails.root}/app/api/**/*.rb"]) do |reloader|
+  times = Dir["#{Rails.root}/app/api/**/*.rb"].map{|f| File.mtime(f) }
+  files = Dir["#{Rails.root}/app/api/**/*.rb"].map{|f| f }
+
+  Rails.logger.debug "! Change detected: reloading following files:"
+  files.each_with_index do |s,i|
+    if times[i] > @last_api_change
+      Rails.logger.debug " - #{s}"
+      load s
+    end
+  end
+
+  Rails.application.reload_routes!
+  Rails.application.routes_reloader.reload!
+  Rails.application.eager_load!
+end
+
+ActionDispatch::Reloader.to_prepare do
+  api_reloader.execute_if_updated
+end
