@@ -6,7 +6,7 @@ class LocationApi < Grape::API
   resource :location do
 
     get do
-      Icloud.get_location
+      Icloud.current_location
     end
 
     get :history do
