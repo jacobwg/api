@@ -7,7 +7,7 @@ class LocationStatus < ActiveRecord::Base
     status = self.where(time: DateTime.strptime("#{location[:timestamp]}", '%Q'),).first_or_create(
       latitude: location[:latitude],
       longitude: location[:longitude],
-      accuracy: location[:horizontalAccuracy])
+      accuracy: location[:accuracy])
     status.save
   end
 end
