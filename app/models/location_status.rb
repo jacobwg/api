@@ -4,7 +4,7 @@ class LocationStatus < ActiveRecord::Base
   def self.store_current_location
     location = Icloud.current_location
 
-    status = self.where(time: DateTime.strptime("#{location['timeStamp']}", '%Q'),).first_or_create(
+    status = self.where(time: DateTime.strptime("#{location['timestamp']}", '%Q'),).first_or_create(
       latitude: location['latitude'],
       longitude: location['longitude'],
       accuracy: location['horizontalAccuracy'])
