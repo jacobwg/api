@@ -27,6 +27,8 @@ gem 'figaro'
 
 gem 'rack-contrib', :require => 'rack/contrib'
 
+gem 'whenever'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -37,7 +39,7 @@ gem 'rack-contrib', :require => 'rack/contrib'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
