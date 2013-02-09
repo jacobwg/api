@@ -1,4 +1,7 @@
 require 'bundler/capistrano'
+require 'whenever/capistrano'
+
+set :whenever_command, 'bundle exec whenever'
 
 set :application, 'api'
 set :repository,  'git@github.com:jacobwg/api.git'
@@ -26,6 +29,6 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "cd #{current_path} && whenever -i api"
+    #run "cd #{current_path} && whenever -i api"
   end
 end
