@@ -10,11 +10,14 @@ class LocationApi < Grape::API
     end
 
     get :history do
-      if params[:daytime]
-        LocationStatus.daytime
-      else
-        LocationStatus.all
-      end
+      results = LocationStatus
+
+      results = results.daytime if params[:daytime]
+      results = results.nighttime if params[:nighttime]
+      results = results.home if params[:home]
+      results = results.not_home if params[:not_home]
+
+      results.all
     end
   end
 
