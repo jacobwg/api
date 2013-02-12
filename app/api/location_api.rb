@@ -10,7 +10,11 @@ class LocationApi < Grape::API
     end
 
     get :history do
-      LocationStatus.all
+      if params[:daytime]
+        LocationStatus.daytime
+      else
+        LocationStatus.all
+      end
     end
   end
 
