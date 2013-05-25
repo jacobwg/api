@@ -31,7 +31,8 @@ app.get('/v1/location/history', function(req, res) {
   });
 });
 
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port);
 
 locations = require('./locations');
 
