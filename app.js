@@ -21,7 +21,13 @@ app.get('/', function(req, res){
 
 app.get('/v1/location', function(req, res) {
   tracker.locate(function(data) {
-    res.jsonp(data);
+    data = data[nconf.get('DEVICE_ID')];
+    res.jsonp({
+      latitude: data.latitude,
+      longitude: data.longitude,
+      accuracy: data.horizontalAccuracy,
+      timestamp: data.timeStamp
+    });
   });
 });
 
